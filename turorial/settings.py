@@ -146,5 +146,5 @@ EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'robiulsunnyemon11@gmail.com'  # আপনার ইমেইল
-EMAIL_HOST_PASSWORD = 'Bushrahimu@1'  
+EMAIL_HOST_PASSWORD = '123456'  
 
