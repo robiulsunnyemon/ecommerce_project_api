@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetDoneView
-from api.views import RegisterView, LoginView, LogoutView, ProfileView, ChangePasswordView,CategoryViewSet,ProductViewSet,ReviewViewSet,OrderViewSet,UserListView
+from api.views import RegisterView, LoginView, LogoutView, ProfileView, ChangePasswordView,CategoryViewSet,ProductViewSet,ReviewViewSet,OrderViewSet,UserListView,SuperUserOnlyView,StrafUserOnlyView,StaffUserListView,SuperUserListView
 
 from rest_framework.routers import DefaultRouter
 
@@ -25,4 +25,9 @@ urlpatterns = [
     path('api/auth/password-reset-complete/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('api/', include(router.urls)),
     path('api/users/', UserListView.as_view(), name='user-list'),
+    path('api/superuser/', SuperUserOnlyView.as_view(), name='superuser-endpoint'),
+    path('api/staff-only/', StrafUserOnlyView.as_view(), name='staff-only'),
+    path('api/staff-users/', StaffUserListView.as_view(), name='staff-users-list'),
+    path('api/super-users/', SuperUserListView.as_view(), name='super-users-list'),
+
 ]

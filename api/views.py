@@ -9,9 +9,9 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
-from .serializers import UserSerializer, RegisterSerializer, ChangePasswordSerializer
+from .serializers import UserSerializer, RegisterSerializer, ChangePasswordSerializer,userSerializer
 from rest_framework.permissions import IsAuthenticated
-from .permissions import IsAuthenticatedOrReadOnly,IsStaffOrReadOnly
+from .permissions import IsAuthenticatedOrReadOnly,IsStaffOrReadOnly,IsSuperUser,IsStaffUser
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -66,6 +66,70 @@ class UserListView(APIView):
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
+
+class SuperUserOnlyView(APIView):
+    """
+    API endpoint accessible only by superusers.
+    """
+    permission_classes = [IsAuthenticated, IsSuperUser]
+
+    def get(self, request):
+        data = {
+            "message": "Welcome, Superuser!",
+            "superuser_data": {
+                "username": request.user.username,
+                "email": request.user.email,
+            }
+        }
+        return Response(data)
+
+#is_straff_view
+
+class StrafUserOnlyView(APIView):
+    """
+    API endpoint accessible only by superusers.
+    """
+    permission_classes = [IsAuthenticated ,IsStaffUser]
+
+    def get(self, request):
+        data = {
+            "message": "Welcome, Superuser!",
+            "user": {
+                "username": request.user.username,
+                "email": request.user.email,
+            }
+        }
+        return Response(data)
+
+
+#staff user list view
+
+class StaffUserListView(APIView):
+    """
+    API to list all staff users.
+    """
+    permission_classes = [IsSuperUser]
+
+    def get(self, request):
+        # Filter only staff users
+        staff_users = User.objects.filter(is_staff=True)
+        serializer = UserSerializer(staff_users, many=True)
+        return Response(serializer.data)
+
+
+#super user list view
+    
+class SuperUserListView(APIView):
+    """
+    API to list all superUser users.
+    """
+    permission_classes = [IsSuperUser]
+
+    def get(self, request):
+        # Filter only super users
+        super_users = User.objects.filter(is_superuser=True)
+        serializer = userSerializer(super_users, many=True)
+        return Response(serializer.data)
 
 
 

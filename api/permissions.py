@@ -26,3 +26,19 @@ class IsStaffOrReadOnly(BasePermission):
         return request.user and request.user.is_staff  # Only staff users can modify
     
 
+
+class IsSuperUser(BasePermission):
+    """
+    Custom permission to allow access only to superusers.
+    """
+    def has_permission(self, request, view):
+        return request.user and request.user.is_superuser
+
+
+
+class IsStaffUser(BasePermission):
+    """
+    Custom permission to allow access only to staff users.
+    """
+    def has_permission(self, request, view):
+        return request.user and request.user.is_staff
