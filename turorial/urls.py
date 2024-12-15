@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetDoneView
-from api.views import RegisterView, LoginView, LogoutView, ProfileView, ChangePasswordView,CategoryViewSet,ProductViewSet,ReviewViewSet,OrderViewSet
+from api.views import RegisterView, LoginView, LogoutView, ProfileView, ChangePasswordView,CategoryViewSet,ProductViewSet,ReviewViewSet,OrderViewSet,UserListView
 
 from rest_framework.routers import DefaultRouter
 
@@ -24,4 +24,5 @@ urlpatterns = [
     path('api/auth/password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('api/auth/password-reset-complete/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('api/', include(router.urls)),
+    path('api/users/', UserListView.as_view(), name='user-list'),
 ]

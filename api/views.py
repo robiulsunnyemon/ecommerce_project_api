@@ -11,7 +11,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from .serializers import UserSerializer, RegisterSerializer, ChangePasswordSerializer
 from rest_framework.permissions import IsAuthenticated
-from .permissions import IsAuthenticatedOrReadOnly
+from .permissions import IsAuthenticatedOrReadOnly,IsStaffOrReadOnly
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -23,7 +23,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly] 
+    permission_classes = [IsStaffOrReadOnly] 
 
     # Add filtering and searching
     filter_backends = [DjangoFilterBackend, SearchFilter]
@@ -51,6 +51,24 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
+
+
+
+#user list
+class UserListView(APIView):
+    """
+    API to list all registered users. Accessible only by superusers.
+    """
+  #  permission_classes = [IsAuthenticated, IsSuperUser]
+
+    def get(self, request):
+        users = User.objects.all()  # Fetch all registered users
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
+
+
+
+
 
 # User Management Views
 class RegisterView(generics.CreateAPIView):

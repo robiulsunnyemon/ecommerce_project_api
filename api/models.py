@@ -8,9 +8,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
-from django.contrib.auth.views import (
-    PasswordResetView, PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetDoneView
-)
+from django.contrib.auth.views import (PasswordResetView, PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetDoneView)
+
 
 # Models
 class Category(models.Model):

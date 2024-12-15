@@ -10,3 +10,19 @@ class IsAuthenticatedOrReadOnly(BasePermission):
         if request.method in SAFE_METHODS:
             return True
         return request.user and request.user.is_authenticated
+
+
+class IsStaffOrReadOnly(BasePermission):
+
+    """
+    Custom permission to allow only staff users to create, update, or delete.
+    Everyone can read (GET) products.
+    """
+
+    def has_permission(self, request, view):
+        # SAFE_METHODS = ['GET', 'HEAD', 'OPTIONS']
+        if request.method in SAFE_METHODS:
+            return True  # Everyone can view
+        return request.user and request.user.is_staff  # Only staff users can modify
+    
+
