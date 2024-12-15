@@ -59,7 +59,7 @@ class UserListView(APIView):
     """
     API to list all registered users. Accessible only by superusers.
     """
-  #  permission_classes = [IsAuthenticated, IsSuperUser]
+    permission_classes = [IsStaffUser, IsSuperUser]
 
     def get(self, request):
         users = User.objects.all()  # Fetch all registered users
