@@ -91,6 +91,7 @@ python manage.py runserver
 ## API Endpoints
 
 - Authentication Endpoints
+---
 
 | Name                   | Endpoint                    | Method | Permission        | Description                                    |
 |------------------------|-----------------------------|--------|-------------------|------------------------------------------------|
@@ -103,3 +104,59 @@ python manage.py runserver
 | List Users              | /users/                     | GET    | Superuser Only    | View all registered users.                    |
 | List Staff Users        | /users/staff-users/         | GET    | Staff Only        | View a list of all staff users.               |
 | List Superusers         | /users/super-users/         | GET    | Superuser Only    | View a list of all superusers.                |
+
+
+- Product Endpoints
+---
+
+| Name            | Endpoint                        | Method | Permission        | Description                                      |
+|-----------------|---------------------------------|--------|-------------------|--------------------------------------------------|
+| List Products   | /products/                      | GET    | Public            | View all products.                              |
+| Create Product  | /products/                      | POST   | Staff Only        | Create a new product.                           |
+| Update Product  | /products/<id>/                 | PUT    | Staff Only        | Update a product.                               |
+| Delete Product  | /products/<id>/                 | DELETE | Staff Only        | Delete a product.                               |
+| Search Products | /products/?search=<query>       | GET    | Public            | Search products by query.                       |
+| Filter Products | /products/?category=<category_id>| GET    | Public            | Filter products by category.                    |
+| Create Review   | /products/<id>/review/          | POST   | Logged-in Users   | Add a review to a product.                      |
+| View Reviews    | /products/<id>/reviews/         | GET    | Public            | View all reviews of a product.                  |
+
+
+- Wishlist Endpoints
+---
+
+| Name                | Endpoint              | Method | Permission        | Description                                    |
+|---------------------|-----------------------|--------|-------------------|------------------------------------------------|
+| List Wishlist Items | /wishlist/            | GET    | Logged-in Users   | View all items in the user's wishlist.        |
+| Add to Wishlist     | /wishlist/            | POST   | Logged-in Users   | Add a product to the wishlist.                |
+| Delete Wishlist Item| /wishlist/<id>/       | DELETE | Logged-in Users   | Remove a product from the wishlist.           |
+
+
+---
+## How to Contribute
+
+1. Fork the repository.
+2. Create a new feature branch: 
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes: 
+   ```bash
+   git commit -m 'Add some feature'.
+   ```
+4. Push to the branch: 
+   ```bash
+   git push origin feature-name.
+   ```
+5. Open a pull request.
+
+---
+
+## License
+### This project is licensed under the MIT License. See the LICENSE file for more details.
+
+---
+
+## Author
+- Robiul Sunny Emon
+- GitHub: robiulsunnyemon
+- Email: robiulsunyemon@gmail.com
