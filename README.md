@@ -57,9 +57,9 @@ pip install -r requirements.txt
 
 ```
 ### 4. Configure the Database
-Update the DATABASES setting in settings.py to match your database credentials.
- ---
-Default configuration (SQLite):
+- Update the DATABASES setting in settings.py to match your database credentials.
+
+- Default configuration (SQLite):
 ```bash
 DATABASES = {
     'default': {
