@@ -68,7 +68,21 @@ DATABASES = {
               }
         }
 
-
 ```
 
+### 5. Apply Migrations
+```bash
+python manage.py makemigrations
+python manage.py migrate
 
+```
+### 6. Create Superuser
+```bash
+python manage.py createsuperuser
+```
+
+### 7. Run the Development Server
+```bash
+python manage.py runserver
+```
+- Open your browser and navigate to http://127.0.0.1:8000/.
