@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetDoneView
-from api.views import RegisterView, LoginView, LogoutView, ProfileView, ChangePasswordView,CategoryViewSet,ProductViewSet,ReviewViewSet,OrderViewSet,UserListView,SuperUserOnlyView,StrafUserOnlyView,StaffUserListView,SuperUserListView
+from api.views import RegisterView, LoginView, LogoutView, ProfileView, ChangePasswordView,CategoryViewSet,ProductViewSet,ReviewViewSet,OrderViewSet,UserListView,SuperUserOnlyView,StrafUserOnlyView,StaffUserListView,SuperUserListView,WishlistListCreateView, WishlistDeleteView
 
 from rest_framework.routers import DefaultRouter
 
@@ -29,5 +29,8 @@ urlpatterns = [
     path('api/staff-only/', StrafUserOnlyView.as_view(), name='staff-only'),
     path('api/staff-users/', StaffUserListView.as_view(), name='staff-users-list'),
     path('api/super-users/', SuperUserListView.as_view(), name='super-users-list'),
+
+    path('api/wishlist/', WishlistListCreateView.as_view(), name='wishlist-list-create'),
+    path('api/wishlist/<int:pk>/', WishlistDeleteView.as_view(), name='wishlist-delete'),
 
 ]
