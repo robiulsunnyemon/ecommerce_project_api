@@ -41,8 +41,8 @@ An advanced and feature-rich E-commerce API developed with Django REST Framework
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/robiulsunnyemon/ecommerce_project_api.git
+cd ecommerce_project_api
 
 ```
 ### 2. Set Up Virtual Environment
