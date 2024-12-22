@@ -51,6 +51,24 @@ python -m venv env
 source env/bin/activate  # On Windows: env\Scripts\activate
 ```
 
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
 
+```
+### 4. Configure the Database
+Update the DATABASES setting in settings.py to match your database credentials.
+ ---
+Default configuration (SQLite):
+```bash
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+              }
+        }
+
+
+```
 
 
