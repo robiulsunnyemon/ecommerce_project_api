@@ -91,7 +91,6 @@ python manage.py runserver
 ## API Endpoints
 
 - Authentication Endpoints
----
 
 | Name                   | Endpoint                    | Method | Permission        | Description                                    |
 |------------------------|-----------------------------|--------|-------------------|------------------------------------------------|
@@ -107,7 +106,6 @@ python manage.py runserver
 
 
 - Product Endpoints
----
 
 | Name            | Endpoint                        | Method | Permission        | Description                                      |
 |-----------------|---------------------------------|--------|-------------------|--------------------------------------------------|
@@ -122,7 +120,6 @@ python manage.py runserver
 
 
 - Wishlist Endpoints
----
 
 | Name                | Endpoint              | Method | Permission        | Description                                    |
 |---------------------|-----------------------|--------|-------------------|------------------------------------------------|
@@ -131,7 +128,7 @@ python manage.py runserver
 | Delete Wishlist Item| /wishlist/<id>/       | DELETE | Logged-in Users   | Remove a product from the wishlist.           |
 
 
----
+
 ## How to Contribute
 
 1. Fork the repository.
@@ -149,12 +146,12 @@ python manage.py runserver
    ```
 5. Open a pull request.
 
----
+
 
 ## License
 ### This project is licensed under the MIT License. See the LICENSE file for more details.
 
----
+
 
 ## Author
 - Robiul Sunny Emon
