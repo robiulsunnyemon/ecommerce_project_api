@@ -65,8 +65,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-              }
-        }
+     }
+}
 
 ```
 
@@ -86,3 +86,20 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 - Open your browser and navigate to http://127.0.0.1:8000/.
+
+---
+## API Endpoints
+
+- Authentication Endpoints
+
+| Name                   | Endpoint                    | Method | Permission        | Description                                    |
+|------------------------|-----------------------------|--------|-------------------|------------------------------------------------|
+| User Registration       | /users/register/            | POST   | Public            | Register a new user.                          |
+| User Login              | /users/login/               | POST   | Public            | Login and receive an authentication token.    |
+| User Logout             | /users/logout/              | POST   | Logged-in Users   | Logout and invalidate the token.              |
+| View Profile            | /users/profile/             | GET    | Logged-in Users   | View the logged-in user's profile.            |
+| Update Password         | /users/update-password/     | PUT    | Logged-in Users   | Change the user's password.                   |
+| Reset Password          | /users/reset-password/      | POST   | Public            | Send a password reset link to the email.      |
+| List Users              | /users/                     | GET    | Superuser Only    | View all registered users.                    |
+| List Staff Users        | /users/staff-users/         | GET    | Staff Only        | View a list of all staff users.               |
+| List Superusers         | /users/super-users/         | GET    | Superuser Only    | View a list of all superusers.                |
