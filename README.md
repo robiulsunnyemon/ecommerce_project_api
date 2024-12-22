@@ -44,4 +44,13 @@ An advanced and feature-rich E-commerce API developed with Django REST Framework
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
 
+```
+### 2. Set Up Virtual Environment
+```bash
+python -m venv env
+source env/bin/activate  # On Windows: env\Scripts\activate
+```
+
+
+
 
