@@ -9,7 +9,8 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
-from .serializers import UserSerializer, RegisterSerializer, ChangePasswordSerializer,userSerializer
+from .serializers import UserSerializer, RegisterSerializer, ChangePasswordSerializer,userSerializer,WishlistSerializer
+from .models import Wishlist
 from rest_framework.permissions import IsAuthenticated
 from .permissions import IsAuthenticatedOrReadOnly,IsStaffOrReadOnly,IsSuperUser,IsStaffUser
 from rest_framework.filters import SearchFilter
@@ -179,3 +180,30 @@ class ChangePasswordView(generics.UpdateAPIView):
         user.set_password(serializer.validated_data['new_password'])
         user.save()
         return Response({"message": "Password updated successfully."})
+    
+
+#wishlist view
+    
+class WishlistListCreateView(generics.ListCreateAPIView):
+    """
+    List all wishlist items of the logged-in user and allow adding new items.
+    """
+    serializer_class = WishlistSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Wishlist.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+class WishlistDeleteView(generics.DestroyAPIView):
+    """
+    Delete an item from the wishlist.
+    """
+    serializer_class = WishlistSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Wishlist.objects.filter(user=self.request.user)

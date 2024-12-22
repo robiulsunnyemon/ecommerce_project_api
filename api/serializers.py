@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Category,Product,Review,Order,User
+from .models import Category,Product,Review,Order,User,Wishlist
 
 #user
 
@@ -58,3 +58,15 @@ class RegisterSerializer(serializers.ModelSerializer):
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
+
+
+
+#wishlist serializer
+
+class WishlistSerializer(serializers.ModelSerializer):
+    product_name = serializers.ReadOnlyField(source='product.name')
+
+    class Meta:
+        model = Wishlist
+        fields = ['id', 'user', 'product', 'product_name', 'added_at']
+        read_only_fields = ['user', 'added_at']
