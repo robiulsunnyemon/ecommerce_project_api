@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Category, Product, Review, Order
-from .serializers import CategorySerializer, ProductSerializer, ReviewSerializer, OrderSerializer
+from .models import Category, Product, Order,Review
+from .serializers import CategorySerializer, ProductSerializer, OrderSerializer,ReviewSerializer
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -19,7 +19,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAuthenticated] 
+    permission_classes = [IsStaffOrReadOnly] 
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
@@ -46,7 +46,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
@@ -60,7 +60,7 @@ class UserListView(APIView):
     """
     API to list all registered users. Accessible only by superusers.
     """
-    permission_classes = [IsStaffUser, IsSuperUser]
+    # permission_classes = [IsStaffUser, IsSuperUser]
 
     def get(self, request):
         users = User.objects.all()  # Fetch all registered users

@@ -31,6 +31,7 @@ class Product(models.Model):
         return self.name
 
 class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="review")
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(choices=[(i, str(i)) for i in range(1, 6)])
     comment = models.TextField(blank=True, null=True)

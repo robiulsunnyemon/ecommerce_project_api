@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Category,Product,Review,Order,User,Wishlist
+from .models import Category,Product,Order,User,Wishlist,Review
 
 #user
 
@@ -8,6 +8,17 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'is_staff', 'is_superuser', 'date_joined']
+
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    user=UserSerializer()
+    class Meta:
+        model = Review
+        fields = ['user','product','rating','comment','created_at',]
+
+
+
 
 class userSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,15 +32,18 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = '__all__'
 
-class ReviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Review
-        fields = '__all__'
+
+
+class ProductSerializer(serializers.ModelSerializer):
+   reviews= ReviewSerializer(many=True)
+   class Meta:
+        model = Product
+        fields = ['category','reviews','name','description','price','stock','created_at','id']
+
+
+
+
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:

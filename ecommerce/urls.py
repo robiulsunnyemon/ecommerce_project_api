@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetDoneView
-from api.views import RegisterView, LoginView, LogoutView, ProfileView, ChangePasswordView,CategoryViewSet,ProductViewSet,ReviewViewSet,OrderViewSet,UserListView,SuperUserOnlyView,StrafUserOnlyView,StaffUserListView,SuperUserListView,WishlistListCreateView, WishlistDeleteView
+from api.views import RegisterView, LoginView, LogoutView, ProfileView, ChangePasswordView,CategoryViewSet,ProductViewSet,OrderViewSet,UserListView,SuperUserOnlyView,StrafUserOnlyView,StaffUserListView,SuperUserListView,WishlistListCreateView, WishlistDeleteView,ReviewViewSet
 
 from rest_framework.routers import DefaultRouter
 
